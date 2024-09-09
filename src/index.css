@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(17, 24, 39, 0.9); /* Darker background */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00bcd4, #007acc); /* Gradient scroll thumb */
+    border-radius: 6px;
+    border: 3px solid rgba(17, 24, 39, 0.9); /* Matches track background to give it a floating effect */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #00d4ff, #0086ff); /* Lighter gradient on hover */
+  }
+  
+  ::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(180deg, #00e7ff, #0094ff); /* Even lighter gradient on click */
+  }
+  
