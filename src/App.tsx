@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { CircuitBoardIcon, RocketIcon, MenuIcon, CpuIcon, LayersIcon, ChevronRightIcon, ChevronDownIcon, InstagramIcon, LinkedinIcon, PhoneIcon } from "lucide-react"
+import  { useState, useEffect, useRef } from 'react'
+import { RocketIcon, MenuIcon, CpuIcon, LayersIcon, ChevronDownIcon, InstagramIcon, LinkedinIcon, PhoneIcon } from "lucide-react"
 
 // Note: In a real project, you'd import these from your UI library
 const Button = ({ className, onClick, children }:any) => (
