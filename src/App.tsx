@@ -121,7 +121,7 @@ const TimelineItem = ({ day, title, icon: Icon, description }:any) => (
   </div>
 )
 
-const CountdownTimer = ({ targetDate }) => {
+const CountdownTimer = ({ targetDate }:any) => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
