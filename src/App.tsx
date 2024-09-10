@@ -5,12 +5,10 @@ import InstallationGuide from "./pages/InstallationGuide" // Update the path as 
 function App() {
   return (
     <BrowserRouter>
-      <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/installation-guide" element={<InstallationGuide />} />
         </Routes>
-      </Router>
     </BrowserRouter>
   );
 }
