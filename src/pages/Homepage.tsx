@@ -1,12 +1,10 @@
-import  { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { RocketIcon, MenuIcon, CpuIcon, LayersIcon, ChevronDownIcon, InstagramIcon, LinkedinIcon, PhoneIcon } from "lucide-react"
 import { useNavigate } from 'react-router-dom';
 
 const Button = ({ className, onClick, children }:any) => (
   <button className={className} onClick={onClick}>{children}</button>
 )
-
-
 
 const Card = ({ className, children }:any) => (
   <div className={className}>{children}</div>
@@ -24,7 +22,6 @@ const CardContent = ({ children }:any) => (
   <div className="p-4">{children}</div>
 )
 
-
 const Accordion = ({ items }:any) => {
   const [openIndex, setOpenIndex] = useState(null);
   const answerRefs = useRef(Array(items.length).fill(null));
@@ -35,7 +32,7 @@ const Accordion = ({ items }:any) => {
 
   return (
     <div className="w-full max-w-2xl mx-auto">
-      {items.map((item :any, index :any):any => (
+      {items.map((item:any, index:any) => (
         <div key={index} className="mb-4">
           <button
             className="flex justify-between items-center w-full p-4 bg-gray-800 bg-opacity-50 rounded-lg text-left text-cyan-300 hover:bg-opacity-70 transition-all duration-200"
@@ -173,8 +170,11 @@ export default function TechtonicLanding() {
 
   const navigateToGuide = () => {
     navigate('/installation-guide');
-}
+  }
 
+  const openRegistrationForm = () => {
+    window.open('https://forms.gle/your-google-form-link', '_blank');
+  }
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
@@ -228,20 +228,20 @@ export default function TechtonicLanding() {
           </div>
           <ul className={`md:flex items-center space-y-4 md:space-y-0 md:space-x-6 ${isMenuOpen ? 'block absolute top-full left-0 right-0 bg-gray-900 bg-opacity-70 backdrop-blur-md p-4' : 'hidden'}`}>
             <li>
-                <Button 
-                    className="py-2 hover:text-cyan-400 transition-colors" 
-                    onClick={navigateToGuide}
-                >
-                    Installation Guide
-                </Button>
+              <Button 
+                className="w-full md:w-auto py-2 px-4 hover:text-cyan-400 transition-colors" 
+                onClick={navigateToGuide}
+              >
+                Installation Guide
+              </Button>
             </li>
             <li>
-              <a 
-                href="#register" 
-                className="block bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-2 px-4 rounded-full text-sm transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50"
+              <Button 
+                className="w-full md:w-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-2 px-4 rounded-full text-sm transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50"
+                onClick={openRegistrationForm}
               >
                 Register Now
-              </a>
+              </Button>
             </li>
           </ul>
         </div>
@@ -262,16 +262,17 @@ export default function TechtonicLanding() {
         </ScrollAnimation>
         
         <ScrollAnimation>
-        <section id="topics" className="mb-20">
-          <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-            Workshop Timeline
-          </h2>
-          <div className="relative max-w-4xl mx-auto flex flex-col justify-center items-center">
-            {workshops.map((workshop, index) => (
-              <TimelineItem key={index} {...workshop} />
-            ))}
-          </div>
+        <section id="topics" className="mb-20 flex flex-col items-center justify-center text-center">
+            <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                Workshop Timeline
+            </h2>
+            <div className="relative max-w-4xl mx-auto flex flex-col justify-center items-center pr-10">
+                {workshops.map((workshop, index) => (
+                <TimelineItem key={index} {...workshop} />
+                ))}
+            </div>
         </section>
+
         </ScrollAnimation>
         
         <ScrollAnimation>
@@ -300,7 +301,7 @@ export default function TechtonicLanding() {
             <h2 className="text-3xl md:text-5xl font-bold mb-8">Ready to Join?</h2>
             <Button
               className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-full text-lg md:text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50"
-              onClick={() => window.open('https://forms.gle/your-google-form-link', '_blank')}
+              onClick={openRegistrationForm}
             >
               Register Now
             </Button>
