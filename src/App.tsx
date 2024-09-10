@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Homepage from './pages/Homepage';
-import InstallationGuide from "./pages/InstallationGuide" // Update the path as needed
+import InstallationGuide from "./pages/InstallationGuide"; // Update the path as needed
 
 function App() {
   return (
