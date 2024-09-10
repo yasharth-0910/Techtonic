@@ -220,7 +220,7 @@ export default function TechtonicLanding() {
           </div>
           <ul className={`md:flex items-center space-y-4 md:space-y-0 md:space-x-6 ${isMenuOpen ? 'block absolute top-full left-0 right-0 bg-gray-900 bg-opacity-70 backdrop-blur-md p-4' : 'hidden'}`}>
             <li>
-                <a className="block py-2 hover:text-cyan-400 transition-colors" onClick={() => Navigate({ to: '/InstallationGuide' })}> Installation Guide</a>
+                <a href="/installation-guide" className="block py-2 hover:text-cyan-400 transition-colors" onClick={() => Navigate({ to: '/installation-guide' })}> Installation Guide</a>
             </li>
             <li>
               <a 
