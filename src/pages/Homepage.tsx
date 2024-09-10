@@ -1,6 +1,6 @@
 import  { useState, useEffect, useRef } from 'react'
 import { RocketIcon, MenuIcon, CpuIcon, LayersIcon, ChevronDownIcon, InstagramIcon, LinkedinIcon, PhoneIcon } from "lucide-react"
-
+import { Navigate } from 'react-router-dom'
 const Button = ({ className, onClick, children }:any) => (
   <button className={className} onClick={onClick}>{children}</button>
 )
@@ -20,6 +20,8 @@ const CardTitle = ({ className, children }:any) => (
 const CardContent = ({ children }:any) => (
   <div className="p-4">{children}</div>
 )
+
+
 
 const Accordion = ({ items }:any) => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -218,7 +220,7 @@ export default function TechtonicLanding() {
           </div>
           <ul className={`md:flex items-center space-y-4 md:space-y-0 md:space-x-6 ${isMenuOpen ? 'block absolute top-full left-0 right-0 bg-gray-900 bg-opacity-70 backdrop-blur-md p-4' : 'hidden'}`}>
             <li>
-                <a href="/InstallationGuide" className="block py-2 hover:text-cyan-400 transition-colors"> Installation Guide</a>
+                <a className="block py-2 hover:text-cyan-400 transition-colors" onClick={() => Navigate({ to: '/InstallationGuide' })}> Installation Guide</a>
             </li>
             <li>
               <a 
