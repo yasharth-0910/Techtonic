@@ -1,7 +1,6 @@
 import  { useState, useEffect, useRef } from 'react'
 import { RocketIcon, MenuIcon, CpuIcon, LayersIcon, ChevronDownIcon, InstagramIcon, LinkedinIcon, PhoneIcon } from "lucide-react"
 
-// Note: In a real project, you'd import these from your UI library
 const Button = ({ className, onClick, children }:any) => (
   <button className={className} onClick={onClick}>{children}</button>
 )
@@ -122,7 +121,7 @@ const TimelineItem = ({ day, title, icon: Icon, description }:any) => (
   </div>
 )
 
-const CountdownTimer = ({ targetDate }:any) => {
+const CountdownTimer = ({ targetDate }) => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -152,11 +151,11 @@ const CountdownTimer = ({ targetDate }:any) => {
   }, [targetDate]);
 
   return (
-    <div className="flex justify-center items-center space-x-6 text-cyan-300 bg-gray-800 bg-opacity-50 rounded-xl p-8 shadow-lg">
+    <div className="flex justify-center items-center space-x-2 sm:space-x-4 text-cyan-300">
       {Object.entries(timeLeft).map(([unit, value]) => (
         <div key={unit} className="flex flex-col items-center">
-          <span className="text-5xl md:text-7xl font-bold mb-2">{value.toString().padStart(2, '0')}</span>
-          <span className="text-sm md:text-base uppercase font-semibold">{unit}</span>
+          <span className="text-2xl sm:text-3xl md:text-5xl font-bold mb-1">{value.toString().padStart(2, '0')}</span>
+          <span className="text-xs sm:text-sm uppercase font-semibold">{unit}</span>
         </div>
       ))}
     </div>
@@ -176,7 +175,7 @@ export default function TechtonicLanding() {
   const workshops = [
     {
       day: "Day 1",
-      title: "Orientation + Arduino for Robotics",
+      title: "Basics of Robotics",
       icon: CpuIcon,
       description: "Master microcontrollers, servo motors, and sensors for building intelligent robots. Get hands-on experience with Arduino programming and circuit design."
     },
@@ -247,16 +246,16 @@ export default function TechtonicLanding() {
         </ScrollAnimation>
         
         <ScrollAnimation>
-          <section id="topics" className="mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-              Workshop Timeline
-            </h2>
-            <div className="relative max-w-4xl mx-auto">
-              {workshops.map((workshop, index) => (
-                <TimelineItem key={index} {...workshop} />
-              ))}
-            </div>
-          </section>
+        <section id="topics" className="mb-20">
+          <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+            Workshop Timeline
+          </h2>
+          <div className="relative max-w-4xl mx-auto flex flex-col justify-center items-center">
+            {workshops.map((workshop, index) => (
+              <TimelineItem key={index} {...workshop} />
+            ))}
+          </div>
+        </section>
         </ScrollAnimation>
         
         <ScrollAnimation>
