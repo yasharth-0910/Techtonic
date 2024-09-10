@@ -32,7 +32,7 @@ const AccordionItem = ({ title, content, isOpen, toggleOpen }:any) => {
   );
 };
 
-const InstallationGuide = () => {
+export default function InstallationGuide(){
   const [openSection, setOpenSection] = useState(null);
 
   const toggleSection = (section:any) => {
@@ -83,5 +83,3 @@ const InstallationGuide = () => {
     </div>
   );
 };
-
-export default InstallationGuide;
