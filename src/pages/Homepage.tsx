@@ -280,7 +280,7 @@ export default function TechtonicLanding() {
             <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center">What You Get</h2>
             <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 md:p-8 flex flex-col md:flex-row justify-between items-center border border-cyan-500 shadow-lg max-w-4xl mx-auto">
               <ul className="list-none mb-8 md:mb-0 text-base md:text-lg grid grid-cols-2 gap-4 md:grid-cols-1">
-                {["Arduino Set", "Official Certificate", "Exclusive Swag", "Hands-on Experience", "Networking"].map((item, index) => (
+                {["Official Certificate", "Hands-on Experience","Exclusive Swag", "Networking"].map((item, index) => (
                   <li key={index} className="flex items-center">
                     <RocketIcon className="w-5 h-5 md:w-6 md:h-6 mr-2 text-cyan-400 flex-shrink-0" />
                     <span className="text-gray-300">{item}</span>
