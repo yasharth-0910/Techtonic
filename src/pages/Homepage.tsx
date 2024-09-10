@@ -1,9 +1,12 @@
 import  { useState, useEffect, useRef } from 'react'
 import { RocketIcon, MenuIcon, CpuIcon, LayersIcon, ChevronDownIcon, InstagramIcon, LinkedinIcon, PhoneIcon } from "lucide-react"
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+
 const Button = ({ className, onClick, children }:any) => (
   <button className={className} onClick={onClick}>{children}</button>
 )
+
+
 
 const Card = ({ className, children }:any) => (
   <div className={className}>{children}</div>
@@ -20,7 +23,6 @@ const CardTitle = ({ className, children }:any) => (
 const CardContent = ({ children }:any) => (
   <div className="p-4">{children}</div>
 )
-
 
 
 const Accordion = ({ items }:any) => {
@@ -167,6 +169,12 @@ const CountdownTimer = ({ targetDate }:any) => {
 export default function TechtonicLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrollY, setScrollY] = useState(0)
+  const navigate = useNavigate();
+
+  const navigateToGuide = () => {
+    navigate('/installation-guide');
+}
+
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
@@ -220,7 +228,12 @@ export default function TechtonicLanding() {
           </div>
           <ul className={`md:flex items-center space-y-4 md:space-y-0 md:space-x-6 ${isMenuOpen ? 'block absolute top-full left-0 right-0 bg-gray-900 bg-opacity-70 backdrop-blur-md p-4' : 'hidden'}`}>
             <li>
-                <a href="/installation-guide" className="block py-2 hover:text-cyan-400 transition-colors" onClick={() => Navigate({ to: '/installation-guide' })}> Installation Guide</a>
+                <Button 
+                    className="py-2 hover:text-cyan-400 transition-colors" 
+                    onClick={navigateToGuide}
+                >
+                    Installation Guide
+                </Button>
             </li>
             <li>
               <a 
