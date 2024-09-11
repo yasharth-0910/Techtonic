@@ -138,7 +138,7 @@ export default function InstallationGuide() {
             <ResourceCard
               title="Techtonic Support Chat"
               description="Join our WhatsApp group for installation support."
-              link="https://chat.whatsapp.com/your-group-link"
+              link="https://chat.whatsapp.com/HpMOrRI723h1h0LAPxjLbY"
               icon={PhoneIcon}
             />
             <ResourceCard

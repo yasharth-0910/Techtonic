@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
-import { RocketIcon, MenuIcon, CpuIcon, LayersIcon, ChevronDownIcon, InstagramIcon, LinkedinIcon, PhoneIcon } from "lucide-react"
+import { RocketIcon, MenuIcon, CpuIcon, LayersIcon, ChevronDownIcon, InstagramIcon, LinkedinIcon, PhoneIcon, Box } from "lucide-react"
 import { useNavigate } from 'react-router-dom';
+import { Canvas } from '@react-three/fiber';
+import { Particles } from '../components/Particles';
 
 const Button = ({ className, onClick, children }:any) => (
   <button className={className} onClick={onClick}>{children}</button>
@@ -163,9 +165,18 @@ const CountdownTimer = ({ targetDate }:any) => {
   );
 };
 
+const AnimatedVersion = () => {
+  return (
+    <span className="font-mono text-3xl md:text-6xl bg-cyan-500 text-gray-900 px-2 py-1 rounded-lg inline-block transform -rotate-3 hover:rotate-0 transition-all duration-300 animate-pulse-rotate">
+      1.0
+    </span>
+  );
+};
+
 export default function TechtonicLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [scrollY, setScrollY] = useState(0)
+  // Remove the unused scrollY variable
+  const [, setScrollY] = useState(0)
   const navigate = useNavigate();
 
   const navigateToGuide = () => {
@@ -198,7 +209,7 @@ export default function TechtonicLanding() {
     {
       day: "Day 3",
       title: "Fusion 360",
-      icon: LayersIcon,
+      icon: Box,
       description: "Dive into 3D modeling and CAD design specifically tailored for robotics applications. Create, simulate, and prepare your designs for 3D printing and manufacturing."
     }
   ]
@@ -208,147 +219,144 @@ export default function TechtonicLanding() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
-      {/* Animated background */}
+      {/* Three.js Background */}
       <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-gray-900 to-gray-900 opacity-70"></div>
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IiMwMGZmZmYxMCIvPjwvc3ZnPg==')] animate-pulse"></div>
+        <Canvas>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} />
+          <Particles count={7000} />
+        </Canvas>
       </div>
 
-      {/* Navbar */}
-      <nav className="sticky top-0 z-50 bg-gray-900 bg-opacity-70 backdrop-blur-md">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-cyan-400">Techtonic</h1>
-          <div className="md:hidden">
-            <Button 
-              className="text-white hover:text-cyan-400 transition-colors"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <MenuIcon className="h-6 w-6" />
-            </Button>
-          </div>
-          <ul className={`md:flex items-center space-y-4 md:space-y-0 md:space-x-6 ${isMenuOpen ? 'block absolute top-full left-0 right-0 bg-gray-900 bg-opacity-70 backdrop-blur-md p-4' : 'hidden'}`}>
-            <li>
+      {/* Existing content */}
+      <div className="relative z-10">
+        {/* Navbar */}
+        <nav className="sticky top-0 z-50 bg-gray-900 bg-opacity-70 backdrop-blur-md">
+          <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 className="text-2xl font-bold text-cyan-400">Techtonic</h1>
+            <div className="md:hidden">
               <Button 
-                className="w-full md:w-auto py-2 px-4 hover:text-cyan-400 transition-colors" 
-                onClick={navigateToGuide}
+                className="text-white hover:text-cyan-400 transition-colors"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
-                Installation Guide
+                <MenuIcon className="h-6 w-6" />
               </Button>
-            </li>
-            <li>
-              <Button 
-                className="w-full md:w-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-2 px-4 rounded-full text-sm transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50"
+            </div>
+            <ul className={`md:flex items-center space-y-4 md:space-y-0 md:space-x-6 ${isMenuOpen ? 'block absolute top-full left-0 right-0 bg-gray-900 bg-opacity-70 backdrop-blur-md p-4' : 'hidden'}`}>
+              <li>
+                <Button 
+                  className="w-full md:w-auto py-2 px-4 hover:text-cyan-400 transition-colors" 
+                  onClick={navigateToGuide}
+                >
+                  Installation Guide
+                </Button>
+              </li>
+              <li>
+                <Button 
+                  className="w-full md:w-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-2 px-4 rounded-full text-sm transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50"
+                  onClick={openRegistrationForm}
+                >
+                  Register Now
+                </Button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        
+        <main className="container mx-auto px-4 py-12">
+          <ScrollAnimation>
+            <header className="text-center mb-16">
+              <h1 className="text-4xl md:text-7xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                Techtonic <AnimatedVersion />
+              </h1>
+              <p className="text-lg md:text-3xl text-cyan-300 mb-8">Annual Robotics Workshops by CICR</p>
+              <div className="bg-gray-800 bg-opacity-50 rounded-xl p-8 inline-block shadow-lg">
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-cyan-300">Workshop Starts In:</h2>
+                <CountdownTimer targetDate={targetDate} />
+              </div>
+            </header>
+          </ScrollAnimation>
+          
+          <ScrollAnimation>
+          <section id="topics" className="mb-20 flex flex-col items-center justify-center text-center">
+              <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                  Workshop Timeline
+              </h2>
+              <div className="relative max-w-4xl mx-auto flex flex-col justify-center items-center pr-10">
+                  {workshops.map((workshop, index) => (
+                  <TimelineItem key={index} {...workshop} />
+                  ))}
+              </div>
+          </section>
+
+          </ScrollAnimation>
+          
+          <ScrollAnimation>
+            <section id="benefits" className="mb-20">
+              <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center">What You Get</h2>
+              <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 md:p-8 flex flex-col md:flex-row justify-between items-center border border-cyan-500 shadow-lg max-w-4xl mx-auto">
+                <ul className="list-none mb-8 md:mb-0 text-base md:text-lg grid grid-cols-2 gap-4 md:grid-cols-1">
+                  {["Official Certificate", "Hands-on Experience","Exclusive Swag", "Networking"].map((item, index) => (
+                    <li key={index} className="flex items-center">
+                      <RocketIcon className="w-5 h-5 md:w-6 md:h-6 mr-2 text-cyan-400 flex-shrink-0" />
+                      <span className="text-gray-300">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="text-center bg-gray-900 p-4 md:p-6 rounded-lg border border-cyan-400 w-full md:w-auto">
+                  <p className="text-lg md:text-2xl font-bold mb-2">All-Inclusive Price</p>
+                  <p className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400 mb-2">FREE</p>
+                  <p className="text-xs md:text-sm text-gray-400">Limited spots available!</p>
+                </div>
+              </div>
+            </section>
+          </ScrollAnimation>
+          
+          <ScrollAnimation>
+            <section id="register" className="text-center mb-20">
+              <h2 className="text-3xl md:text-5xl font-bold mb-8">Ready to Join?</h2>
+              <Button
+                className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-full text-lg md:text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50"
                 onClick={openRegistrationForm}
               >
                 Register Now
               </Button>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      
-      <main className="container mx-auto px-4 py-12 relative z-10">
-        <ScrollAnimation>
-          <header className="text-center mb-16">
-            <h1 className="text-4xl md:text-7xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-              Techtonic <span className="font-mono text-3xl md:text-6xl bg-cyan-500 text-gray-900 px-2 py-1 rounded-lg inline-block transform -rotate-3">1.0</span>
-            </h1>
-            <p className="text-lg md:text-3xl text-cyan-300 mb-8">Annual Robotics Workshops by CICR</p>
-            <div className="bg-gray-800 bg-opacity-50 rounded-xl p-8 inline-block shadow-lg">
-              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-cyan-300">Workshop Starts In:</h2>
-              <CountdownTimer targetDate={targetDate} />
-            </div>
-          </header>
-        </ScrollAnimation>
-        
-        <ScrollAnimation>
-        <section id="topics" className="mb-20 flex flex-col items-center justify-center text-center">
-            <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-                Workshop Timeline
-            </h2>
-            <div className="relative max-w-4xl mx-auto flex flex-col justify-center items-center pr-10">
-                {workshops.map((workshop, index) => (
-                <TimelineItem key={index} {...workshop} />
-                ))}
-            </div>
-        </section>
+            </section>
+          </ScrollAnimation>
 
-        </ScrollAnimation>
+          <ScrollAnimation>
+            <section id="faq" className="mb-20">
+              <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center">Frequently Asked Questions</h2>
+              <Accordion items={[
+                { q: "Who can attend?", a: "Any 1st Year interested in robotics, regardless of experience level!" },
+                { q: "Do I need to bring my own equipment?", a: "Nope! We provide all necessary hardware and software. Just bring your laptop and charger." },
+                { q: "Are there any Pre-requisite?", a: "No, Workshop will be totally beginer friendly, However we do expect you to download software beforehand, whose steps are given in Installation Guide." },
+                { q: "How long are the workshops?", a: "Each workshop is a full-day event, typically running from 9 AM to 5 PM." },
+                { q: "I am from CSE/IT branch. Can I attend?", a: "Yes, the workshop is open for everyone irrespective of branch and programme." },
+              ]} />
+            </section>
+          </ScrollAnimation>
+        </main>
         
-        <ScrollAnimation>
-          <section id="benefits" className="mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center">What You Get</h2>
-            <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 md:p-8 flex flex-col md:flex-row justify-between items-center border border-cyan-500 shadow-lg max-w-4xl mx-auto">
-              <ul className="list-none mb-8 md:mb-0 text-base md:text-lg grid grid-cols-2 gap-4 md:grid-cols-1">
-                {["Official Certificate", "Hands-on Experience","Exclusive Swag", "Networking"].map((item, index) => (
-                  <li key={index} className="flex items-center">
-                    <RocketIcon className="w-5 h-5 md:w-6 md:h-6 mr-2 text-cyan-400 flex-shrink-0" />
-                    <span className="text-gray-300">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="text-center bg-gray-900 p-4 md:p-6 rounded-lg border border-cyan-400 w-full md:w-auto">
-                <p className="text-lg md:text-2xl font-bold mb-2">All-Inclusive Price</p>
-                <p className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400 mb-2">FREE</p>
-                <p className="text-xs md:text-sm text-gray-400">Limited spots available!</p>
-              </div>
+        <footer className="relative z-10 bg-gray-900 bg-opacity-70 backdrop-blur-md border-t border-cyan-800">
+          <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-cyan-300 mb-4 md:mb-0 text-sm md:text-base text-center md:text-left">&copy; 2024 Techtonic by CICR. All rights reserved.</p>
+            <div className="flex space-x-6">
+              <a href="https://www.instagram.com/cicr_jiit/" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 transition-colors">
+                <InstagramIcon className="w-6 h-6" />
+                <span className="sr-only">Instagram</span>
+              </a>
+              <a href="https://www.linkedin.com/company/cicrjiit128/" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 transition-colors">
+                <LinkedinIcon className="w-6 h-6" />
+                <span className="sr-only">LinkedIn</span>
+              </a>
+              <a href="https://chat.whatsapp.com/HpMOrRI723h1h0LAPxjLbY" className="text-cyan-400 hover:text-cyan-300 transition-colors">
+                <PhoneIcon className="w-6 h-6" />
+                <span className="sr-only">Contact Us</span>
+              </a>
             </div>
-          </section>
-        </ScrollAnimation>
-        
-        <ScrollAnimation>
-          <section id="register" className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold mb-8">Ready to Join?</h2>
-            <Button
-              className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-full text-lg md:text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50"
-              onClick={openRegistrationForm}
-            >
-              Register Now
-            </Button>
-          </section>
-        </ScrollAnimation>
-
-        <ScrollAnimation>
-          <section id="faq" className="mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center">Frequently Asked Questions</h2>
-            <Accordion items={[
-              { q: "Who can attend?", a: "Anyone interested in robotics, regardless of experience level!" },
-              { q: "Do I need to bring my own equipment?", a: "Nope! We provide all necessary hardware and software. Just bring your laptop." },
-              { q: "How long are the workshops?", a: "Each workshop is a full-day event, typically running from 9 AM to 5 PM." },
-              { q: "Will there be breaks?", a: "Yes, we will include breaks throughout the day." },
-              { q: "I am from CSE/IT branch. Can I attend?", a: "Yes, the workshop is open for everyone irrespective of branch and programme." },
-            ]} />
-          </section>
-        </ScrollAnimation>
-      </main>
-      
-      <footer className="relative z-10 bg-gray-900 border-t border-cyan-800">
-        <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-cyan-300 mb-4 md:mb-0 text-sm md:text-base text-center md:text-left">&copy; 2024 Techtonic by CICR. All rights reserved.</p>
-          <div className="flex space-x-6">
-            <a href="https://www.instagram.com/cicr_jiit/" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 transition-colors">
-              <InstagramIcon className="w-6 h-6" />
-              <span className="sr-only">Instagram</span>
-            </a>
-            <a href="https://www.linkedin.com/company/cicrjiit128/" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 transition-colors">
-              <LinkedinIcon className="w-6 h-6" />
-              <span className="sr-only">LinkedIn</span>
-            </a>
-            <a href="tel:+1234567890" className="text-cyan-400 hover:text-cyan-300 transition-colors">
-              <PhoneIcon className="w-6 h-6" />
-              <span className="sr-only">Contact Us</span>
-            </a>
           </div>
-        </div>
-      </footer>
-
-      {/* Floating circuit lines */}
-      <div className="fixed inset-0 pointer-events-none z-20">
-        <div className="absolute top-0 left-0 w-full h-full" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h100v100H0z' fill='none'/%3E%3Cpath d='M0 50 L100 50 M50 0 L50 100' stroke='%2300ffff10' stroke-width='0.5'/%3E%3C/svg%3E")`,
-          backgroundSize: '100px 100px',
-          transform: `translateY(${scrollY * 0.5}px)`,
-        }}></div>
+        </footer>
       </div>
     </div>
   )
