@@ -215,7 +215,7 @@ export default function TechtonicLanding() {
   ]
 
   // Set the target date for the workshop 
-  const targetDate = new Date('2024-09-19T12:40:00+05:30');
+  const targetDate = new Date('2024-09-26T12:40:00+05:30');
 
   return (
     <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
