@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { RocketIcon, MenuIcon, CpuIcon, LayersIcon, ChevronDownIcon, InstagramIcon, LinkedinIcon, PhoneIcon, Box } from "lucide-react"
+import { RocketIcon, MenuIcon, CpuIcon, LayersIcon, ChevronDownIcon, InstagramIcon, LinkedinIcon, PhoneIcon, Box, Clock, MapPin } from "lucide-react"
 import { useNavigate } from 'react-router-dom';
 import { Canvas } from '@react-three/fiber';
 import { Particles } from '../components/Particles';
@@ -101,7 +101,7 @@ const ScrollAnimation = ({ children }:any) => {
   );
 };
 
-const TimelineItem = ({ day, title, icon: Icon, description }:any) => (
+const TimelineItem = ({ day, title, icon: Icon, description, time, venue }:any) => (
   <div className="flex flex-col md:flex-row items-start mb-12 relative">
     <div className="flex-none w-20 mr-4 mb-4 md:mb-0">
       <div className="text-cyan-400 font-bold text-lg md:text-xl">{day}</div>
@@ -117,7 +117,15 @@ const TimelineItem = ({ day, title, icon: Icon, description }:any) => (
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-gray-300">{description}</p>
+          <p className="text-sm text-gray-300 mb-2">{description}</p>
+          <div className="flex items-center text-sm text-cyan-300 mt-2">
+            <Clock className="w-4 h-4 mr-2" />
+            <span>{time}</span>
+          </div>
+          <div className="flex items-center text-sm text-cyan-300 mt-1">
+            <MapPin className="w-4 h-4 mr-2" />
+            <span>{venue}</span>
+          </div>
         </CardContent>
       </Card>
     </div>
@@ -175,7 +183,6 @@ const AnimatedVersion = () => {
 
 export default function TechtonicLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  // Remove the unused scrollY variable
   const [, setScrollY] = useState(0)
   const navigate = useNavigate();
 
@@ -184,7 +191,7 @@ export default function TechtonicLanding() {
   }
 
   const openRegistrationForm = () => {
-    window.open('https://forms.gle/your-google-form-link', '_blank');
+    window.open('https://forms.gle/Ber4Z7n4jjw3RcgU6', '_blank');
   }
 
   useEffect(() => {
@@ -198,24 +205,31 @@ export default function TechtonicLanding() {
       day: "Day 1",
       title: "Basics of Robotics",
       icon: CpuIcon,
-      description: "Master microcontrollers, servo motors, and sensors for building intelligent robots. Get hands-on experience with Arduino programming and circuit design."
+      description: "Master microcontrollers, servo motors, and sensors for building intelligent robots. Get hands-on experience with Arduino programming and circuit design.",
+      time: "2:30 PM to 4:30 PM",
+      venue: "Room Number: 153"
     },
     {
       day: "Day 2",
       title: "PCB Designing",
       icon: LayersIcon,
-      description: "Design professional-grade PCBs and create complex electronic schematics. Learn industry-standard tools and techniques for electronic design automation."
+      description: "Design professional-grade PCBs and create complex electronic schematics. Learn industry-standard tools and techniques for electronic design automation.",
+      time: "2:30 PM to 4:30 PM",
+      venue: "Room Number: 153"
     },
     {
       day: "Day 3",
       title: "Fusion 360",
       icon: Box,
-      description: "Dive into 3D modeling and CAD design specifically tailored for robotics applications. Create, simulate, and prepare your designs for 3D printing and manufacturing."
+      description: "Learn the basics 3D modeling and CAD design specifically tailored for robotics applications. Create, simulate, and prepare your designs for 3D printing and manufacturing.",
+      time: "11:00 AM to 1:00 PM",
+      venue: "Room Number: 153"
     }
   ]
 
   // Set the target date for the workshop 
-  const targetDate = new Date('2024-09-26T12:40:00+05:30');
+  const targetDate = new Date('2024-09-26T14:30:00+05:30');
+
 
   return (
     <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
@@ -269,7 +283,7 @@ export default function TechtonicLanding() {
               <h1 className="text-4xl md:text-7xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
                 Techtonic <AnimatedVersion />
               </h1>
-              <p className="text-lg md:text-3xl text-cyan-300 mb-8">Annual Robotics Workshops by CICR</p>
+              <p className="text-lg md:text-3xl text-cyan-300 mb-8">Annual Robotics Workshop by CICR</p>
               <div className="bg-gray-800 bg-opacity-50 rounded-xl p-8 inline-block shadow-lg">
                 <h2 className="text-2xl md:text-3xl font-bold mb-6 text-cyan-300">Workshop Starts In:</h2>
                 <CountdownTimer targetDate={targetDate} />
@@ -288,12 +302,13 @@ export default function TechtonicLanding() {
                   ))}
               </div>
           </section>
-
           </ScrollAnimation>
           
           <ScrollAnimation>
             <section id="benefits" className="mb-20">
-              <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center">What You Get</h2>
+              <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                What You Get
+              </h2>
               <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 md:p-8 flex flex-col md:flex-row justify-between items-center border border-cyan-500 shadow-lg max-w-4xl mx-auto">
                 <ul className="list-none mb-8 md:mb-0 text-base md:text-lg grid grid-cols-2 gap-4 md:grid-cols-1">
                   {["Official Certificate", "Hands-on Experience","Exclusive Swag", "Networking"].map((item, index) => (
@@ -314,7 +329,9 @@ export default function TechtonicLanding() {
           
           <ScrollAnimation>
             <section id="register" className="text-center mb-20">
-              <h2 className="text-3xl md:text-5xl font-bold mb-8">Ready to Join?</h2>
+              <h2 className="text-3xl md:text-5xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                Ready to Join?
+              </h2>
               <Button
                 className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-full text-lg md:text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50"
                 onClick={openRegistrationForm}
@@ -326,12 +343,14 @@ export default function TechtonicLanding() {
 
           <ScrollAnimation>
             <section id="faq" className="mb-20">
-              <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center">Frequently Asked Questions</h2>
+              <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                Frequently Asked Questions
+              </h2>
               <Accordion items={[
                 { q: "Who can attend?", a: "Any 1st Year interested in robotics, regardless of experience level!" },
                 { q: "Do I need to bring my own equipment?", a: "Nope! We provide all necessary hardware and software. Just bring your laptop and charger." },
                 { q: "Are there any Pre-requisite?", a: "No, Workshop will be totally beginer friendly, However we do expect you to download software beforehand, whose steps are given in Installation Guide." },
-                { q: "How long are the workshops?", a: "Each workshop is a full-day event, typically running from 9 AM to 5 PM." },
+                { q: "How long are the workshops?", a: "Day 1 and Day 2 will run from 2:30 PM to 4:30 PM, while Day 3 will be from 11:00 AM to 1:00 PM." },
                 { q: "I am from CSE/IT branch. Can I attend?", a: "Yes, the workshop is open for everyone irrespective of branch and programme." },
               ]} />
             </section>

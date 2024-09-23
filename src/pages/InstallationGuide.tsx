@@ -155,7 +155,7 @@ export default function InstallationGuide() {
             If you encounter any issues during installation, please don't hesitate to reach out to us via WhatsApp or email.
           </p>
           <p className="text-cyan-400">
-            We're excited to see you at the workshop! Happy installing! 🚀
+            We're excited to see you at the workshop! 🚀
           </p>
         </div>
       </div>
