@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDownIcon, MonitorIcon, CpuIcon, BookOpenIcon, PhoneIcon, MenuIcon, InstagramIcon, LinkedinIcon  } from 'lucide-react';
+import { ChevronDownIcon, MonitorIcon, CpuIcon, BookOpenIcon, PhoneIcon, MenuIcon, InstagramIcon, LinkedinIcon,LayersIcon} from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Canvas } from '@react-three/fiber';
 import { Particles } from '../components/Particles';
@@ -90,6 +90,15 @@ export default function InstallationGuide() {
     setOpenSection(openSection === section ? null : section);
   };
 
+  const ArudinoSteps = [
+    "arduino.cc/en/software",
+    "Download the latest version of the Arduino IDE for your operating system.",
+    "If donation page pop's up, you can skip it by clicking on 'Just Download'.",
+    "Once the download is complete, run the .exe file.",
+    "Follow the Arduino IDE Installation Wizard, clicking 'Next' and selecting the destination folder.",
+    "After installation, locate Arduino IDE in your Start menu or desktop and run the application.",
+  ]
+
   const kicadSteps = [
     "Visit the official KiCad website at https://www.kicad.org/download/",
     "Select your operating system (Windows, macOS, or Linux).",
@@ -170,12 +179,21 @@ export default function InstallationGuide() {
           </p>
           
           <div className="max-w-3xl mx-auto">
+
+            <AccordionItem
+              title="Arduino IDE Installation"
+              content={ArudinoSteps}
+              isOpen={openSection === 'arduino'}
+              toggleOpen={() => toggleSection('arduino')}
+              icon={CpuIcon}
+            />
+
             <AccordionItem
               title="KiCad Installation"
               content={kicadSteps}
               isOpen={openSection === 'kicad'}
               toggleOpen={() => toggleSection('kicad')}
-              icon={CpuIcon}
+              icon={LayersIcon}
             />
 
             <AccordionItem
