@@ -230,7 +230,6 @@ export default function TechtonicLanding() {
   // Set the target date for the workshop 
   const targetDate = new Date('2024-09-26T14:30:00+05:30');
 
-
   return (
     <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
       {/* Three.js Background */}
@@ -247,7 +246,7 @@ export default function TechtonicLanding() {
         {/* Navbar */}
         <nav className="sticky top-0 z-50 bg-gray-900 bg-opacity-70 backdrop-blur-md">
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-cyan-400">Techtonic</h1>
+            <h1 className="text-2xl font-bold text-cyan-400">CICR</h1>
             <div className="md:hidden">
               <Button 
                 className="text-white hover:text-cyan-400 transition-colors"
@@ -337,6 +336,23 @@ export default function TechtonicLanding() {
                 onClick={openRegistrationForm}
               >
                 Register Now
+              </Button>
+            </section>
+          </ScrollAnimation>
+
+          <ScrollAnimation>
+            <section id="installation-guide" className="text-center mb-20">
+              <h2 className="text-2xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                Need Help Setting Up?
+              </h2>
+              <p className="text-lg text-gray-300 mb-6">
+                Check out our step-by-step installation guide for all the software you'll need.
+              </p>
+              <Button
+                className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-full text-lg md:text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50"
+                onClick={navigateToGuide}
+              >
+                View Installation Guide
               </Button>
             </section>
           </ScrollAnimation>
